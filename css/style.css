@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Indie+Flower&family=Montserrat&family=Quicksand&display=swap');
+
+body {
+    background-color: #6B818C;
+    color: #D8E4FF;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    line-height: 1.6em;
+    margin: 0; 
+    height: 100%;
+}
+.container {
+    display: flex;
+    justify-content: center; /*centers items on the line (the x-axis by default)*/
+    align-items: center; /*centers items on the cross-axis (y by default)*/
+    flex-direction: column;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+main {
+    flex: 1;
+    overflow: auto;
+}
+
+.header {
+    flex: 1;
+    margin: 20px;
+}
+
+.footer {
+    flex: 1;
+    margin: 20px;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:100%;
+    text-align: center;
+}
+
+.calc-container {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    height: 480px;
+    width: 400px;
+    background-color: #35605A;
+    border: 1px solid red;
+}
+
+.display {
+    width: 100%;
+}
+
+.button-nr {
+    width: 25%;
+}
+
+.button-op {
+    width: 25%;
+}
