@@ -47,21 +47,36 @@ main {
 .calc-container {
     flex: 1;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     height: 480px;
     width: 400px;
-    background-color: #35605A;
-    border: 1px solid red;
+    background-color: rgb(97,98,103);
 }
 
 .display {
-    width: 100%;
+    width: 80%;
+    background-color: rgb(208,214,225);
+    color: black;
+    border-radius: 25px;
+    margin: 20px;
 }
 
-.button-nr {
-    width: 25%;
+.button {
+    width: 15%;
+    color: black;
+    border-radius: 15px;
+    margin: 20px;
 }
 
-.button-op {
-    width: 25%;
+.nr {
+    background-color: rgb(254,254,254);
+}
+
+.op {
+    background-color: rgb(254,254,254);
+}
+
+.eq {
+    background-color: rgb(248,151,52);
 }
