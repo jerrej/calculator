@@ -13,63 +13,29 @@
     <div class="container">
         <header>
             <div class="header">
-                <h1>Odin Calculator</h1>
+                <h1>Calculator</h1>
             </div>
         </header>
         <main>
             <div class="content">
-                <div class="calc-container">
-                    <div class="display">
-                        12345...
-                    </div>
-                    <div class="button nr" id="btn7">
-                        7
-                    </div>
-                    <div class="button nr" id="btn7">
-                        8
-                    </div>
-                    <div class="button nr" id="btn7">
-                        9
-                    </div>
-                    <div class="button op" id="btn7">
-                        %
-                    </div>
-                    <div class="button nr" id="btn7">
-                        6
-                    </div>
-                    <div class="button nr" id="btn7">
-                        5
-                    </div>
-                    <div class="button nr" id="btn7">
-                        4
-                    </div>
-                    <div class="button op" id="btn7">
-                        x
-                    </div>
-                    <div class="button nr" id="btn7">
-                        3
-                    </div>
-                    <div class="button nr" id="btn7">
-                        2
-                    </div>
-                    <div class="button nr" id="btn7">
-                        1
-                    </div>
-                    <div class="button op" id="btn7">
-                        -
-                    </div>
-                    <div class="button nr" id="btn7">
-                        .
-                    </div>
-                    <div class="button nr" id="btn7">
-                        0
-                    </div>
-                    <div class="button nr" id="btn7">
-                        +
-                    </div>
-                    <div class="button eq" id="btn7">
-                        =
-                    </div>
+                <div class="calc-container" draggable="false">
+                    <div class="display"><div class="subdisplay" id="display2"> </div><div class="subdisplay" id="display1">0</div></div>
+                    <div class="button nr" id="btn-7">7</div>
+                    <div class="button nr" id="btn-8">8</div>
+                    <div class="button nr" id="btn-9">9</div>
+                    <div class="button op" id="btn-divide">÷</div>
+                    <div class="button nr" id="btn-6">6</div>
+                    <div class="button nr" id="btn-5">5</div>
+                    <div class="button nr" id="btn-4">4</div>
+                    <div class="button op" id="btn-multiply">x</div>
+                    <div class="button nr" id="btn-3">3</div>
+                    <div class="button nr" id="btn-2">2</div>
+                    <div class="button nr" id="btn-1">1</div>
+                    <div class="button op" id="btn-subtract">-</div>
+                    <div class="button op" id="btn-decimal">.</div>
+                    <div class="button nr" id="btn-0">0</div>
+                    <div class="button op" id="btn-add">+</div>
+                    <div class="button eq" id="btn-equal">=</div>
                 </div>
             </div>
         </main>
@@ -84,5 +50,91 @@
 </html>
 
 <script>
+    let firstOperand = ''
+    let secondOperand = ''
+    let currentOperation = null
+    let shouldRefresh = false
+
+    const primaryDisplay = document.getElementById('display1')
+    const secondaryDisplay = document.getElementById('display2')
+    const numberButtons = document.querySelectorAll(`.nr`)
+    const operatorButtons = document.querySelectorAll(`.op`)
+    const equalsButton = document.getElementById('btn-equal')
+
+    equalsButton.addEventListener('click', calculate)
+
+    numberButtons.forEach((div) =>
+        div.addEventListener('click', () => appendNumber(div.textContent))
+        /* console.log(div.textContent)*/
+    )
+
+    operatorButtons.forEach((div) =>
+         div.addEventListener('click', () => setOperation(div.textContent))
+    )
+
+    function refreshDisplay() {
+        primaryDisplay.textContent = ''
+        shouldRefresh = false;
+    }
+
+    function appendNumber(number) {
+        if (primaryDisplay.textContent == '0' || shouldRefresh)
+            refreshDisplay()
+        primaryDisplay.textContent += number
+    }
+
+    function setOperation(operator) {
+    if (currentOperation !== null) calculate()
+        firstOperand = primaryDisplay.textContent
+        currentOperation = operator
+        secondaryDisplay.textContent = `${firstOperand} ${currentOperation}`
+        shouldRefresh = true
+    }
+
+    function calculate() {
+    secondOperand = primaryDisplay.textContent
+    primaryDisplay.textContent =  operate(currentOperation, firstOperand, secondOperand)
+    secondaryDisplay.textContent = `${firstOperand} ${currentOperation} ${secondOperand} =`
+    currentOperation = null
+    }
+
+    /*
+        function appendNumber(number) {
+            if (currentOperationScreen.textContent === '0' || shouldResetScreen)
+                resetScreen()
+            currentOperationScreen.textContent += number
+        }   */
+
+    function add(x, y) {
+        return x + y
+    }
+
+    function subtract(x, y) {
+        return x - y
+    }
+
+    function multiply(x, y) {
+        return x * y
+    }
+
+    function divide(x, y) {
+        return x / y
+    }
+
+    function operate(operator, x, y) {
+        switch (operator) {
+            case '+':
+                return add(x, y)
+            case '-':
+                return subtract(x, y)
+            case 'x':
+                return multiply(x, y)
+            case '÷':
+                if (b == 0) return null
+                else return divide(x, y)
+            default:
+                return null
+        }
+    }
 
 </script>
