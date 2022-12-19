@@ -57,7 +57,7 @@
     let secondOperand = ''
     let firstOperator = null
     let secondOperator = null
-    let shouldRefresh = false
+    let shouldUpdate = false
 
     const primaryDisplay = document.getElementById('display1')
     const secondaryDisplay = document.getElementById('display2')
@@ -78,43 +78,43 @@
         div.addEventListener('click', () => clickOperatorButton(div.textContent))
     )
 
-    function refreshDisplay() {
+    function updateDisplay() {
         console.log("Refresh function has been executed")
         primaryDisplay.textContent = ''
-        shouldRefresh = false;
+        shouldUpdate = false;
     }
 
     function clickNumberButton(number) {
-        if (primaryDisplay.textContent == '0' || shouldRefresh) refreshDisplay()
+        if (primaryDisplay.textContent == '0' || shouldUpdate) updateDisplay()
         primaryDisplay.textContent += number
-        console.log('Appending number ' + number + ' to primary display')
+        /*console.log('Appending number ' + number + ' to primary display')*/
     }
 
     function clickOperatorButton(operator) {
         if (firstOperator !== null) clickEqualsButton()
         firstOperand = primaryDisplay.textContent
-        console.log("Storing first operand: " + firstOperand)
+        /*onsole.log("Storing first operand: " + firstOperand)*/
         firstOperator = operator
-        console.log("Storing first operator: " + firstOperator)
+        /*console.log("Storing first operator: " + firstOperator)*/
         secondaryDisplay.textContent = `${firstOperand} ${firstOperator}`
-        console.log("Output first operand and operator to secondary display")
-        shouldRefresh = true
-        console.log("Primary display will be refreshed on next input")
+        shouldUpdate = true
     }
 
     function clickEqualsButton() {
-        if (firstOperator === null || shouldRefresh) return
+        if (firstOperator === null || shouldUpdate) return
         secondOperand = primaryDisplay.textContent
-        console.log('Storing second operand: ' + secondOperand)
+        /*console.log('Storing second operand: ' + secondOperand)*/
         primaryDisplay.textContent = operate(firstOperator, firstOperand, secondOperand)
-        console.log("Ouput result to primary display")
         secondaryDisplay.textContent = `${firstOperand} ${firstOperator} ${secondOperand} =`
-        console.log("Output operation to secondary display")
         firstOperator = null
     }
 
     function clickDecimalButton() {
-        console.log("This does something")
+        if (shouldUpdate) updateDisplay()
+        if (primaryDisplay.textContent === '')
+            primaryDisplay.textContent = '0'
+        if (primaryDisplay.textContent.includes('.')) return
+        currentOperationScreen.textContent += '.'
     }
 
     function pressKeyboardButton(e) {
