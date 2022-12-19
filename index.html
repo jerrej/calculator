@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Odin Rock Paper Scissors</title>
+    <title>Calculator</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="https://kit.fontawesome.com/c91d7ef7d0.js" crossorigin="anonymous"></script>
 </head>
@@ -79,7 +79,6 @@
     )
 
     function updateDisplay() {
-        console.log("Refresh function has been executed")
         primaryDisplay.textContent = ''
         shouldUpdate = false;
     }
@@ -119,6 +118,11 @@
 
     function pressKeyboardButton(e) {
         if (e.key >= 0 && e.key <= 9) clickNumberButton(e.key)
+        if (e.key == '+') clickOperatorButton('+')
+        if (e.key == '-') clickOperatorButton('-')
+        if (e.key == '*') clickOperatorButton('x')
+        if (e.key == '/') clickOperatorButton('÷')
+        if (e.key === 'Enter') clickEqualsButton()
     }
 
     function roundResult(number) {
