@@ -66,6 +66,7 @@
     const equalsButton = document.getElementById('btn-equals')
     const decimalButton = document.getElementById('btn-decimal')
 
+    window.addEventListener('keydown', pressKeyboardButton)
     equalsButton.addEventListener('click', clickEqualsButton)
     decimalButton.addEventListener('click', clickDecimalButton)
 
@@ -114,6 +115,10 @@
 
     function clickDecimalButton() {
         console.log("This does something")
+    }
+
+    function pressKeyboardButton(e) {
+        if (e.key >= 0 && e.key <= 9) clickNumberButton(e.key)
     }
 
     function roundResult(number) {
